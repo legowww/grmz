@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: local
+
+  application:
+    name: groomingzone
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:postgresql://localhost:15432/grmz
+    username: "grmz"
+    password: "grmz"
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:sql/schema.sql
+#      data-locations: classpath:sql/data.sql
+      encoding: UTF-8
+
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none  # none, update, create, create-drop
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
