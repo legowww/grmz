@@ -1,5 +1,6 @@
 package com.company.groomingzone.common;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,6 +13,7 @@ import java.time.OffsetDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 
+    @Column(nullable = false)
     @CreatedDate
     private OffsetDateTime createdTs;
 
