@@ -77,6 +77,8 @@ hs_err_pid*
 replay_pid*
 
 ### Spring Boot ###\
+**/application-db.yml
+
 
 ### Project Specific ###
 logs/
