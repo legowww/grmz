@@ -34,21 +34,9 @@ spring:
   config:
     activate:
       on-profile: local
-
-  datasource:
-    url: jdbc:postgresql://localhost:15432/grmz
-    username: "grmz"
-    password: "grmz"
-    driver-class-name: org.postgresql.Driver
-
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:sql/schema.sql
-      encoding: UTF-8
+  import: optional:classpath:/application-db.yml
 
   jpa:
-    defer-datasource-initialization: true
     hibernate:
       ddl-auto: none
 
