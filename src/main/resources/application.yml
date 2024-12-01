@@ -18,7 +18,7 @@ spring:
   config:
     activate:
       on-profile: dev
-  import: optional:classpath:/application-db.yml
+    import: optional:classpath:/application-db.yml # spring.config.import ...
 
   jpa:
     hibernate:
@@ -34,7 +34,7 @@ spring:
   config:
     activate:
       on-profile: local
-  import: optional:classpath:/application-db.yml
+    import: optional:classpath:/application-db.yml # spring.config.import ...
 
   jpa:
     hibernate:
