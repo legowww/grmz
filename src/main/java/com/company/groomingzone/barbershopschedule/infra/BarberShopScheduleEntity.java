@@ -1,12 +1,14 @@
-package com.company.groomingzone.barber;
+package com.company.groomingzone.barbershopschedule.infra;
 
 import com.company.groomingzone.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "barber_shop_schedules")
@@ -24,4 +26,22 @@ public class BarberShopScheduleEntity extends BaseEntity {
 
     @Column(name = "date_time", nullable = false)
     private OffsetDateTime dateTime;
+
+
+    public BarberShopScheduleEntity(Long barberId, Long barberShopId, OffsetDateTime dateTime) {
+        this.barberId = barberId;
+        this.barberShopId = barberShopId;
+        this.dateTime = dateTime;
+    }
+
+
+    @Override
+    public String toString() {
+        return "BarberShopScheduleEntity{" +
+                "id=" + id +
+                ", barberId=" + barberId +
+                ", barberShopId=" + barberShopId +
+                ", dateTime=" + dateTime +
+                '}';
+    }
 }
