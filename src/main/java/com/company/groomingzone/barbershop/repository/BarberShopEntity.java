@@ -1,4 +1,4 @@
-package com.company.groomingzone.barber;
+package com.company.groomingzone.barbershop.repository;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
