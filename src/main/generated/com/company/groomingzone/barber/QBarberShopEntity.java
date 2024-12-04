@@ -2,6 +2,7 @@ package com.company.groomingzone.barber;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.company.groomingzone.barbershop.repository.BarberShopEntity;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
