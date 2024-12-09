@@ -1,6 +1,5 @@
 package com.company.groomingzone.barbershopschedule.infra;
 
-import com.company.groomingzone.barbershopschedule.QBarberShopScheduleEntity;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

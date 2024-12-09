@@ -1,7 +1,8 @@
 package com.company.groomingzone.barbershop.controller;
 
-import com.company.groomingzone.barbershop.dto.CreateBarberShopRequest;
+import com.company.groomingzone.barbershop.controller.dto.PostBarberShopRequest;
 import com.company.groomingzone.barbershop.service.BarberShopService;
+import com.company.groomingzone.barbershop.service.dto.CreateBarberShopCommand;
 import com.company.groomingzone.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +19,15 @@ public class BarberShopController {
     //TODO Spring Security 적용해서 id 받아와서 넣어줘야함. 아니? 자기 바버샵 아닐 수도 있잖아.
     // 아니? 근데 등록자 != 원장이면 원장한테 알림 보내주면 좋을 듯
     @PostMapping
-    public ApiResponse<?> createBarberShop(CreateBarberShopRequest request) {
+    public ApiResponse<?> createBarberShop(PostBarberShopRequest request) {
         Long requestMemberId = 123L; // TODO 나중에 Security로 ㄱㄱ
-        return ApiResponse.success(barberShopService.createBarberShop(request, requestMemberId));
+        CreateBarberShopCommand command = CreateBarberShopCommand.of(request.ownerId(),
+                request.name(),
+                request.address(),
+                request.phone(),
+                request.introduction(),
+                request.latitude(),
+                request.longitude());
+        return ApiResponse.success(barberShopService.createBarberShop(command, requestMemberId));
     }
 }
