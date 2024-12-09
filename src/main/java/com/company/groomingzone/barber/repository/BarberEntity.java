@@ -1,4 +1,4 @@
-package com.company.groomingzone.barber;
+package com.company.groomingzone.barber.repository;
 
 import com.company.groomingzone.common.BaseEntity;
 import jakarta.persistence.*;
