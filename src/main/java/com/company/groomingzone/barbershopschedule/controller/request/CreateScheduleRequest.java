@@ -1,4 +1,4 @@
-package com.company.groomingzone.barbershopschedule.ui.request;
+package com.company.groomingzone.barbershopschedule.controller.request;
 
 import com.company.groomingzone.barbershopschedule.domain.TimeInterval;
 

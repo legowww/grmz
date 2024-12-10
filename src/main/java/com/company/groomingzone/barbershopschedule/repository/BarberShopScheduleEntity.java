@@ -1,4 +1,4 @@
-package com.company.groomingzone.barbershopschedule.infra;
+package com.company.groomingzone.barbershopschedule.repository;
 
 import com.company.groomingzone.common.BaseEntity;
 import jakarta.persistence.*;
@@ -27,6 +27,8 @@ public class BarberShopScheduleEntity extends BaseEntity {
     @Column(name = "date_time", nullable = false)
     private OffsetDateTime dateTime;
 
+    @Column(name = "is_reserved", nullable = false)
+    private Boolean isReserved;
 
     public BarberShopScheduleEntity(Long barberId, Long barberShopId, OffsetDateTime dateTime) {
         this.barberId = barberId;
