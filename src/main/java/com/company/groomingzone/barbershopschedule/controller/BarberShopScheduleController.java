@@ -1,12 +1,11 @@
-package com.company.groomingzone.barbershopschedule.ui;
+package com.company.groomingzone.barbershopschedule.controller;
 
 
-import com.company.groomingzone.barbershopschedule.application.BarberShopScheduleService;
-import com.company.groomingzone.barbershopschedule.ui.request.CreateScheduleRequest;
+import com.company.groomingzone.barbershopschedule.service.BarberShopScheduleService;
+import com.company.groomingzone.barbershopschedule.controller.request.CreateScheduleRequest;
 import com.company.groomingzone.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
