@@ -2,6 +2,7 @@ package com.company.groomingzone.barbershop.repository;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "barbershops")
+@Getter
 public class BarberShopEntity {
 
     @Id
