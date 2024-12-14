@@ -28,11 +28,15 @@ public class QScheduleEntity extends EntityPathBase<ScheduleEntity> {
     //inherited
     public final DateTimePath<java.time.OffsetDateTime> createdTs = _super.createdTs;
 
-    public final DateTimePath<java.time.OffsetDateTime> dateTime = createDateTime("dateTime", java.time.OffsetDateTime.class);
+    public final NumberPath<Long> customerId = createNumber("customerId", Long.class);
+
+    public final DateTimePath<java.time.OffsetDateTime> endTime = createDateTime("endTime", java.time.OffsetDateTime.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final BooleanPath isReserved = createBoolean("isReserved");
+    public final EnumPath<com.company.groomingzone.schedule.domain.ScheduleStatus> scheduleStatus = createEnum("scheduleStatus", com.company.groomingzone.schedule.domain.ScheduleStatus.class);
+
+    public final DateTimePath<java.time.OffsetDateTime> startTime = createDateTime("startTime", java.time.OffsetDateTime.class);
 
     //inherited
     public final DateTimePath<java.time.OffsetDateTime> updatedTs = _super.updatedTs;

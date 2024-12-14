@@ -32,7 +32,7 @@ public class ScheduleEntity extends BaseEntity {
     @Column(name = "start_time", nullable = false)
     private OffsetDateTime startTime;
 
-    @Column(name = "start_time", nullable = false)
+    @Column(name = "end_time", nullable = false)
     private OffsetDateTime endTime;
 
     @Enumerated(EnumType.STRING)
