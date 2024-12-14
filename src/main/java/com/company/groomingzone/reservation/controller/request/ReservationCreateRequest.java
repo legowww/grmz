@@ -4,11 +4,11 @@ import com.company.groomingzone.reservation.domain.ReservationTarget;
 
 public record ReservationCreateRequest(
         Long barberShopId,
-        Long barberShopScheduleId,
-        Long barberShopStyleId
+        Long scheduleId,
+        Long styleId
 ) {
 
     public ReservationTarget toReservationTarget() {
-        return new ReservationTarget(barberShopId, barberShopScheduleId, barberShopStyleId);
+        return new ReservationTarget(barberShopId, scheduleId, styleId);
     }
 }
