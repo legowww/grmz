@@ -39,5 +39,5 @@ public class BarberShopEntity {
     private BigDecimal longitude;
 
     @Column(nullable = false)
-    private Boolean isActive = true;
+    private Boolean isActive;
 }

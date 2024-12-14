@@ -4,5 +4,7 @@ import com.company.groomingzone.barbershop.domain.BarberShop;
 
 public interface BarberShopRepository {
 
+    BarberShop findById(Long id);
+
     BarberShop saveBarberShop(BarberShop barberShop);
 }
