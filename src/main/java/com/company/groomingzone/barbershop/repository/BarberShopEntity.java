@@ -2,6 +2,7 @@ package com.company.groomingzone.barbershop.repository;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -40,4 +41,17 @@ public class BarberShopEntity {
 
     @Column(nullable = false)
     private Boolean isActive;
+
+    @Builder
+    private BarberShopEntity(Long id, Long ownerId, String name, String address, String phone, String introduction, BigDecimal latitude, BigDecimal longitude, Boolean isActive) {
+        this.id = id;
+        this.ownerId = ownerId;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.introduction = introduction;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.isActive = isActive;
+    }
 }

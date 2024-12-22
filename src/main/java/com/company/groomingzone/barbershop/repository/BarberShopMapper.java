@@ -1,6 +1,6 @@
 package com.company.groomingzone.barbershop.repository;
 
-import com.company.groomingzone.barber.repository.BarberRepository;
+import com.company.groomingzone.barber.domain.Barber;
 import com.company.groomingzone.barbershop.domain.Address;
 import com.company.groomingzone.barbershop.domain.BarberShop;
 import com.company.groomingzone.barbershop.domain.Location;
@@ -13,19 +13,26 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BarberShopMapper {
 
-    private final BarberRepository barberRepository;
-
-    public BarberShop mapToDomainEntity(BarberShopEntity barberShopEntity) {
+    public BarberShop mapToDomainEntity(BarberShopEntity barberShopEntity, Barber owner) {
         return BarberShop.of(barberShopEntity.getId(),
-                barberRepository.findById(barberShopEntity.getOwnerId()),
+                owner,
                 Name.of(barberShopEntity.getName()),
                 Address.of(barberShopEntity.getAddress()),
                 PhoneNumber.of(barberShopEntity.getPhone()),
                 barberShopEntity.getIntroduction(),
-                Location.of(barberShopEntity.getLatitude().doubleValue(), barberShopEntity.getLongitude().doubleValue()));
+                Location.of(barberShopEntity.getLatitude().doubleValue(), barberShopEntity.getLongitude().doubleValue()),
+                barberShopEntity.getIsActive());
     }
 
     public BarberShopEntity mapToDatabaseEntity(BarberShop barberShop) {
-        return new BarberShopEntity();
+        return BarberShopEntity.builder()
+            .id(barberShop.id())
+            .ownerId(barberShop.owner().id())
+            .name(barberShop.name().name())
+            .address(barberShop.address().address())
+            .phone(barberShop.phoneNumber().phoneNumber())
+            .introduction(barberShop.introduction())
+            .isActive(barberShop.isActive())
+            .build();
     }
 }
