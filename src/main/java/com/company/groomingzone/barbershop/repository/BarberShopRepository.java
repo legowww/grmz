@@ -6,5 +6,5 @@ public interface BarberShopRepository {
 
     BarberShop findById(Long id);
 
-    BarberShop saveBarberShop(BarberShop barberShop);
+    BarberShop save(BarberShop barberShop);
 }

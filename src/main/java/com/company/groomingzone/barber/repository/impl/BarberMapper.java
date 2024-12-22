@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 public class BarberMapper {
 
     public Barber mapToDomainEntity(BarberEntity dbEntity) {
-        return new Barber();
+        return new Barber(1L); //TODO 임시로 넣어놓음
     }
 }

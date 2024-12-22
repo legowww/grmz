@@ -30,7 +30,7 @@ public class ReservationService {
         Reservation reservation = Reservation.of(
                 customerId,
                 schedule.barberId(),
-                barberShop.getId(),
+                barberShop.id(),
                 schedule.id(),
                 style.id()
         );

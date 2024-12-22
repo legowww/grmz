@@ -1,4 +1,6 @@
 package com.company.groomingzone.barber.domain;
 
-public class Barber {
+
+public record Barber(Long id) {
+
 }

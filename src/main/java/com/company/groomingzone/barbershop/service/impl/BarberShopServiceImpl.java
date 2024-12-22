@@ -30,12 +30,13 @@ public class BarberShopServiceImpl implements BarberShopService {
         if (!requestBarber.equals(owner)) {
             // 어쩌구 저쩌구 알림 보냄
         }
-        BarberShop barberShop = BarberShop.of(owner,
+        BarberShop barberShop = BarberShop.withOutId(owner,
             Name.of(command.name()),
             Address.of(command.address()),
             PhoneNumber.of(command.phone()),
             command.introduction(),
-            Location.of(command.latitude(), command.longitude()));
-        return repository.saveBarberShop(barberShop);
+            Location.of(command.latitude(), command.longitude()),
+            true);
+        return repository.save(barberShop);
     }
 }
