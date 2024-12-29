@@ -14,14 +14,10 @@ public class ScheduleFinder {
     private final ScheduleRepository scheduleRepository;
     private final ScheduleValidator scheduleValidator;
 
-
-    @Transactional(readOnly = true)
     public Schedule findById(Long barberShopScheduledId) {
         return scheduleRepository.findById(barberShopScheduledId);
     }
 
-
-    @Transactional(readOnly = true)
     public Schedule findAvailabilitySchedule(Long scheduledId) {
         Schedule schedule = findById(scheduledId);
         scheduleValidator.validateScheduleAvailability(schedule);

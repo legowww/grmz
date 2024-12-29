@@ -20,18 +20,18 @@ public class BarberShopMapper {
                 Address.of(barberShopEntity.getAddress()),
                 PhoneNumber.of(barberShopEntity.getPhone()),
                 barberShopEntity.getIntroduction(),
-                Location.of(barberShopEntity.getLatitude().doubleValue(), barberShopEntity.getLongitude().doubleValue()),
+                Location.of(barberShopEntity.getLatitude(), barberShopEntity.getLongitude()),
                 barberShopEntity.getIsActive());
     }
 
     public BarberShopEntity mapToDatabaseEntity(BarberShop barberShop) {
         return BarberShopEntity.builder()
-            .id(barberShop.id())
-            .ownerId(barberShop.owner().id())
-            .name(barberShop.name().name())
-            .address(barberShop.address().address())
-            .phone(barberShop.phoneNumber().phoneNumber())
-            .introduction(barberShop.introduction())
+            .id(barberShop.getId())
+            .ownerId(barberShop.getOwner().id())
+            .name(barberShop.getName().name())
+            .address(barberShop.getAddress().address())
+            .phone(barberShop.getPhoneNumber().phoneNumber())
+            .introduction(barberShop.getIntroduction())
             .isActive(barberShop.isActive())
             .build();
     }

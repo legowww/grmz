@@ -1,24 +1,33 @@
 package com.company.groomingzone.barbershop.domain;
 
 import com.company.groomingzone.barber.domain.Barber;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-public record BarberShop(Long id,
-                         Barber owner,
-                         Name name,
-                         Address address,
-                         PhoneNumber phoneNumber,
-                         String introduction,
-                         Location location,
-                         boolean isActive) {
+@AllArgsConstructor
+@Getter
+public class BarberShop {
 
-    // 조회, 네이밍은 일단 건드리지 않았음
+    private Long id;
+    private Barber owner;
+    private Name name;
+    private Address address;
+    private PhoneNumber phoneNumber;
+    private String introduction;
+    private Location location;
+    private boolean isActive;
+
+
     public static BarberShop of(Long id, Barber owner, Name name, Address address,
-        PhoneNumber phoneNumber, String introduction, Location location, boolean isActive) {
+                                PhoneNumber phoneNumber, String introduction,
+                                Location location, boolean isActive) {
         return new BarberShop(id, owner, name, address, phoneNumber, introduction, location, isActive);
     }
 
-    public static BarberShop withOutId(Barber owner, Name name, Address address, PhoneNumber phoneNumber,
-        String introduction, Location location, boolean isActive) {
+
+    public static BarberShop withOutId(Barber owner, Name name, Address address,
+                                       PhoneNumber phoneNumber, String introduction,
+                                       Location location, boolean isActive) {
         return new BarberShop(null, owner, name, address, phoneNumber, introduction, location, isActive);
     }
 }

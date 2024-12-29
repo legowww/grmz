@@ -14,5 +14,10 @@ public enum ScheduleStatus {
     /**
      * 예약 취소된 상태
      */
-    CANCELED;
+    CANCELED,
+
+    /**
+     * 바버 임의 마감
+     */
+    CLOSED;
 }

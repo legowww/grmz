@@ -4,13 +4,13 @@ import com.company.groomingzone.common.BaseEntity;
 import com.company.groomingzone.reservation.domain.ReservationStatus;
 import com.company.groomingzone.schedule.domain.ScheduleStatus;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
+
 @Getter
+@AllArgsConstructor(staticName = "of")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "barber_shop_schedules")
@@ -26,7 +26,7 @@ public class ScheduleEntity extends BaseEntity {
     @Column(name = "barber_shop_id", nullable = false)
     private Long barberShopId;
 
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "customer_id", nullable = true)
     private Long customerId;
 
     @Column(name = "start_time", nullable = false)
@@ -36,6 +36,6 @@ public class ScheduleEntity extends BaseEntity {
     private OffsetDateTime endTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "schedule_status", nullable = false)
+    @Column(name = "status", nullable = false)
     private ScheduleStatus scheduleStatus;
 }

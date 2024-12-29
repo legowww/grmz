@@ -1,14 +1,21 @@
 package com.company.groomingzone.style.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.math.BigDecimal;
 
-public record Style(
-        Long id,
-        Long barberShopId,
-        Long barberId,
-        String name,
-        BigDecimal price,
-        String description,
-        String url
-) {
+
+@AllArgsConstructor(staticName = "of")
+@Getter
+public class Style {
+
+    private Long id;
+    private Long barberShopId;
+    private Long barberId;
+    private String name;
+    private BigDecimal price;
+    private String description;
+    private String url;
+    private StyleCategory styleCategory;
 }
