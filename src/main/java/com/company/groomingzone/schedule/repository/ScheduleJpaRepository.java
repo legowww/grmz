@@ -11,15 +11,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ScheduleJpaRepository implements ScheduleRepository {
 
-    private final ScheduleEntityRepository barberShopScheduleJpaRepository;
+    private final ScheduleEntityRepository scheduleEntityRepository;
     private final ScheduleMapper scheduleMapper;
-
 
     @Override
     public Schedule findById(Long barberShopScheduledId) {
-        ScheduleEntity scheduleEntity = barberShopScheduleJpaRepository.findById(barberShopScheduledId)
+        ScheduleEntity scheduleEntity = scheduleEntityRepository.findById(barberShopScheduledId)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 스케줄입니다."));
 
         return scheduleMapper.mapToDomainEntity(scheduleEntity);
+    }
+
+    @Override
+    public Long save(Schedule schedule) {
+        return scheduleEntityRepository.save(scheduleMapper.mapToDatabaseEntity(schedule)).getId();
     }
 }

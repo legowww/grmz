@@ -32,6 +32,6 @@ public class BarberShopRepositoryImpl implements BarberShopRepository {
     public BarberShop save(BarberShop barberShop) {
         BarberShopEntity dbEntity = barberShopMapper.mapToDatabaseEntity(barberShop);
         BarberShopEntity savedDbEntity = jpaRepository.save(dbEntity);
-        return barberShopMapper.mapToDomainEntity(savedDbEntity, barberShop.owner());
+        return barberShopMapper.mapToDomainEntity(savedDbEntity, barberShop.getOwner());
     }
 }

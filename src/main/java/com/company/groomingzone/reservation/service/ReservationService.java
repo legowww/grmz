@@ -21,20 +21,13 @@ public class ReservationService {
     private final StyleFinder styleFinder;
     private final ReservationWriter reservationWriter;
 
-
-    public Long save(Long customerId, ReservationTarget reservationTarget) {
+    public Long reserve(Long customerId, ReservationTarget reservationTarget) {
         BarberShop barberShop = barberShopFinder.findById(reservationTarget.barberShopId());
-        Schedule schedule = scheduleFinder.findAvailabilitySchedule(reservationTarget.scheduleId());
         Style style = styleFinder.findById(reservationTarget.styleId());
+        Schedule schedule = scheduleFinder.findAvailabilitySchedule(reservationTarget.scheduleId());
+        schedule.reserve(customerId);
+        Reservation reservation = Reservation.of(customerId, barberShop, schedule, style);
 
-        Reservation reservation = Reservation.of(
-                customerId,
-                schedule.barberId(),
-                barberShop.id(),
-                schedule.id(),
-                style.id()
-        );
-
-        return reservationWriter.save(reservation);
+        return reservationWriter.reserve(reservation, schedule);
     }
 }

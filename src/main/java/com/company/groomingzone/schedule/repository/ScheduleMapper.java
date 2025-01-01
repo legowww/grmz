@@ -8,10 +8,26 @@ import org.springframework.stereotype.Component;
 public class ScheduleMapper {
 
     public Schedule mapToDomainEntity(ScheduleEntity scheduleEntity) {
-        return null;
+        return Schedule.of(
+                scheduleEntity.getId(),
+                scheduleEntity.getBarberId(),
+                scheduleEntity.getBarberShopId(),
+                scheduleEntity.getCustomerId(),
+                scheduleEntity.getStartTime(),
+                scheduleEntity.getEndTime(),
+                scheduleEntity.getScheduleStatus()
+        );
     }
 
     public ScheduleEntity mapToDatabaseEntity(Schedule schedule) {
-        return new ScheduleEntity();
+        return ScheduleEntity.of(
+                schedule.getId(),
+                schedule.getBarberId(),
+                schedule.getBarberShopId(),
+                schedule.getCustomerId(),
+                schedule.getStartTime(),
+                schedule.getEndTime(),
+                schedule.getScheduleStatus()
+        );
     }
 }
