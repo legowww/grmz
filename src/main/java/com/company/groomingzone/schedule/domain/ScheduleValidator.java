@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class ScheduleValidator {
 
     public void validateScheduleAvailability(Schedule schedule) {
-        if (schedule.scheduleStatus().equals(ScheduleStatus.RESERVED)) {
+        if (schedule.getScheduleStatus().equals(ScheduleStatus.RESERVED)) {
             throw new IllegalStateException("이미 예약이 마감된 시간대입니다.");
         }
     }

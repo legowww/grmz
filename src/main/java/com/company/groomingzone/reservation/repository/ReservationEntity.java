@@ -3,12 +3,11 @@ package com.company.groomingzone.reservation.repository;
 import com.company.groomingzone.common.BaseEntity;
 import com.company.groomingzone.reservation.domain.ReservationStatus;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 
+@AllArgsConstructor(staticName = "of")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "reservations")
@@ -37,15 +36,4 @@ public class ReservationEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "reservation_status", nullable = false)
     private ReservationStatus reservationStatus;
-
-    @Builder
-    public ReservationEntity(Long id, Long customerId, Long barberId, Long barberShopId, Long barberShopScheduleId, Long barberShopStyleId, ReservationStatus reservationStatus) {
-        this.id = id;
-        this.customerId = customerId;
-        this.barberId = barberId;
-        this.barberShopId = barberShopId;
-        this.barberShopScheduleId = barberShopScheduleId;
-        this.barberShopStyleId = barberShopStyleId;
-        this.reservationStatus = reservationStatus;
-    }
 }

@@ -1,4 +1,4 @@
-package com.company.groomingzone.barber;
+package com.company.groomingzone.style.repository;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -10,14 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QBarberShopShopEntity is a Querydsl query type for BarberShopShopEntity
+ * QStyleEntity is a Querydsl query type for StyleEntity
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QBarberShopShopEntity extends EntityPathBase<BarberShopShopEntity> {
+public class QStyleEntity extends EntityPathBase<StyleEntity> {
 
-    private static final long serialVersionUID = -1102779719L;
+    private static final long serialVersionUID = 1835109841L;
 
-    public static final QBarberShopShopEntity barberShopShopEntity = new QBarberShopShopEntity("barberShopShopEntity");
+    public static final QStyleEntity styleEntity = new QStyleEntity("styleEntity");
 
     public final com.company.groomingzone.common.QBaseEntity _super = new com.company.groomingzone.common.QBaseEntity(this);
 
@@ -36,19 +36,23 @@ public class QBarberShopShopEntity extends EntityPathBase<BarberShopShopEntity> 
 
     public final NumberPath<java.math.BigDecimal> price = createNumber("price", java.math.BigDecimal.class);
 
+    public final EnumPath<com.company.groomingzone.style.domain.StyleCategory> styleCategory = createEnum("styleCategory", com.company.groomingzone.style.domain.StyleCategory.class);
+
     //inherited
     public final DateTimePath<java.time.OffsetDateTime> updatedTs = _super.updatedTs;
 
-    public QBarberShopShopEntity(String variable) {
-        super(BarberShopShopEntity.class, forVariable(variable));
+    public final StringPath url = createString("url");
+
+    public QStyleEntity(String variable) {
+        super(StyleEntity.class, forVariable(variable));
     }
 
-    public QBarberShopShopEntity(Path<? extends BarberShopShopEntity> path) {
+    public QStyleEntity(Path<? extends StyleEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QBarberShopShopEntity(PathMetadata metadata) {
-        super(BarberShopShopEntity.class, metadata);
+    public QStyleEntity(PathMetadata metadata) {
+        super(StyleEntity.class, metadata);
     }
 
 }

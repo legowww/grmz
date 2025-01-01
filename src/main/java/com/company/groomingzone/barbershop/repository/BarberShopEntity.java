@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "barbershops")
+@Table(name = "barber_shops")
 @Getter
 public class BarberShopEntity {
 
@@ -36,7 +36,7 @@ public class BarberShopEntity {
     @Column(precision = 10, scale = 8)
     private BigDecimal latitude;
 
-    @Column(precision = 11, scale = 8)
+    @Column(precision = 10, scale = 8)
     private BigDecimal longitude;
 
     @Column(nullable = false)
