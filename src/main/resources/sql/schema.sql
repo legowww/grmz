@@ -85,3 +85,9 @@ CREATE TABLE IF NOT EXISTS public.system_codes(
 	updated_ts timestamptz(3) NULL,
 	CONSTRAINT system_codes_pk PRIMARY KEY (code)
 );
+
+CREATE TABLE IF NOT EXISTS public.member_roles (
+    member_id int8 NOT NULL,
+    "role" varchar(20) NOT NULL
+);
+
