@@ -1,9 +1,7 @@
 package com.company.groomingzone.member;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

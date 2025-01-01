@@ -8,6 +8,8 @@ import com.company.groomingzone.security.MemberAccessDeniedHandler;
 import com.company.groomingzone.security.MemberAuthenticationEntryPoint;
 import com.company.groomingzone.security.MemberAuthenticationFailureHandler;
 import com.company.groomingzone.security.MemberAuthenticationSuccessHandler;
+import java.util.Arrays;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +20,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -34,8 +32,6 @@ public class SecurityConfig {
     private final JwtManager jwtManager;
     private final CustomAuthorityUtils authorityUtils;
     private final UserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
-//    private final RedisSignInPort redisSignInPort;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -91,7 +87,7 @@ public class SecurityConfig {
         public void configure(HttpSecurity builder) {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
-            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtManager, passwordEncoder);
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtManager);
 
             jwtAuthenticationFilter.setFilterProcessesUrl("/auth/sign-in");
 
@@ -106,8 +102,7 @@ public class SecurityConfig {
                 .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
         }
 
-        public HttpSecurity build() {
-            return getBuilder();
+        public void build() {
         }
     }
 }

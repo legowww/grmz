@@ -1,9 +1,7 @@
 package com.company.groomingzone.security;
 
-import com.company.groomingzone.member.MemberEntity;
 import com.company.groomingzone.member.MemberService.MemberDetails;
 import com.google.gson.Gson;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,9 +19,6 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
         , HttpServletResponse response
         , Authentication authentication) throws IOException{
         MemberDetails memberEntity = (MemberDetails) authentication.getPrincipal();
-        Long id = memberEntity.getId();
-        String name = memberEntity.getName();
-        String email = memberEntity.getEmail();
         SignInResponse signInResponse = new SignInResponse(memberEntity.getId(), memberEntity.getEmail(), memberEntity.getName(), memberEntity.getRoles());
 
         response.setContentType("application/json");
