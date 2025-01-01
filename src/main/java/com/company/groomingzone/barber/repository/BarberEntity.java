@@ -1,6 +1,7 @@
 package com.company.groomingzone.barber.repository;
 
 import com.company.groomingzone.common.BaseEntity;
+import com.company.groomingzone.member.MemberEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
