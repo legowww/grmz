@@ -1,5 +1,6 @@
 package com.company.groomingzone.reservation.controller;
 
+import com.company.groomingzone.barber.service.BarberService;
 import com.company.groomingzone.common.ApiResponse;
 import com.company.groomingzone.common.CommonIdResponse;
 import com.company.groomingzone.reservation.service.ReservationService;
@@ -28,7 +29,4 @@ public class ReservationController {
     public ResponseEntity<ApiResponse<CommonIdResponse>> reserve(Long customerId, @RequestBody ReservationCreateRequest request) {
         return ResponseEntity.ok(ApiResponse.success(CommonIdResponse.of(reservationService.reserve(1L, request.toReservationTarget()))));
     }
-
-
-
 }

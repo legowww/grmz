@@ -1,7 +1,19 @@
+buildscript {
+	ext {
+		restdocsApiSpecVersion = '0.18.2'
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.5'
 	id 'io.spring.dependency-management' version '1.1.6'
+
+	// Spring REST Docs 의 결과물을 OpenAPI3 스펙으로 변환
+	id 'com.epages.restdocs-api-spec' version "${restdocsApiSpecVersion}"
+
+	// OpenAPI 3 스펙을 기반으로 SwaggerUI 생성(HTML, CSS, JS)
+	id 'org.hidetake.swagger.generator' version '2.18.2'
 }
 
 group = 'com.company'
@@ -30,6 +42,13 @@ dependencies {
 	annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
 	annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
 
+	// Spring REST Docs 의존성
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	// epages REST Docs 의존성
+	testImplementation "com.epages:restdocs-api-spec-mockmvc:${restdocsApiSpecVersion}"
+	// Swagger 의존성
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -40,6 +59,35 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 }
 
+tasks.withType(GenerateSwaggerUI) {
+	// openapi3 테스크 이후에 실행 됨
+	dependsOn 'openapi3'
+
+	//기존 파일 삭제했다가, build 에 json 정적파일 복사 (안해도 됨 → local 확인용)
+	delete file('src/main/resources/static/docs/')
+	copy {
+		from "build/resources/main/static/docs"
+		into "src/main/resources/static/docs/"
+	}
+}
+
+// restdocs-api 옵션 설정
+openapi3 {
+	server = "http://localhost:8080"
+	title = "Grooming Zone"
+	description = " API 문서"
+	version = "0.0.1"
+	outputFileNamePrefix = 'api-docs'
+	format = 'json'
+	outputDirectory = 'build/resources/main/static/docs'
+}
+
+//openAPI 작성 자동화를 위해 패키징 전에 openapi3 테스크 선실행 설정
+bootJar {
+	dependsOn(':openapi3')
+}
+
+
 // plain jar 비활성화
 jar {
 	enabled = false
@@ -48,7 +96,6 @@ jar {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
 
 // Q클래스 생성 위치 설정
 def generated = 'src/main/generated'

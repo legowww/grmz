@@ -1,0 +1,94 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Grooming Zone",
+    "description" : " API 문서",
+    "version" : "0.0.1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8080"
+  } ],
+  "tags" : [ ],
+  "paths" : {
+    "/v1/reservations" : {
+      "post" : {
+        "tags" : [ "v1" ],
+        "operationId" : "reservation-create",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/v1-reservations-2136381877"
+              },
+              "examples" : {
+                "reservation-create" : {
+                  "value" : "{\n  \"barberShopId\" : 1,\n  \"scheduleId\" : 1,\n  \"styleId\" : 1\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/v1-reservations-1165803444"
+                },
+                "examples" : {
+                  "reservation-create" : {
+                    "value" : "{\n  \"status\" : \"SUCCESS\",\n  \"message\" : null,\n  \"data\" : {\n    \"id\" : 1\n  },\n  \"timeStamp\" : \"2025-01-04T20:01:11.145609+09:00\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "v1-reservations-2136381877" : {
+        "type" : "object",
+        "properties" : {
+          "barberShopId" : {
+            "type" : "number",
+            "description" : "바버샵 ID"
+          },
+          "styleId" : {
+            "type" : "number",
+            "description" : "시술 ID"
+          },
+          "scheduleId" : {
+            "type" : "number",
+            "description" : "스케줄 ID"
+          }
+        }
+      },
+      "v1-reservations-1165803444" : {
+        "type" : "object",
+        "properties" : {
+          "timeStamp" : {
+            "type" : "string",
+            "description" : "응답 시간"
+          },
+          "data" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "number",
+                "description" : "생성된 예약 ID"
+              }
+            }
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "응답 상태"
+          }
+        }
+      }
+    }
+  }
+}
