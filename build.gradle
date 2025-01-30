@@ -24,6 +24,9 @@ repositories {
 }
 
 dependencies {
+	// 트랜잭션 로그 확인
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
+
 	// QueryDSL 의존성
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
 	annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'

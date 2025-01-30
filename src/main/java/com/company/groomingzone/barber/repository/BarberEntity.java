@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,4 +31,13 @@ public class BarberEntity extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean isActive = true;
+
+    @Builder
+    private BarberEntity(Long id, Long memberId, Long barberShopId, String introduction, Boolean isActive) {
+        this.id = id;
+        this.memberId = memberId;
+        this.barberShopId = barberShopId;
+        this.introduction = introduction;
+        this.isActive = isActive;
+    }
 }

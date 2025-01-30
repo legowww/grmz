@@ -4,9 +4,11 @@ import com.company.groomingzone.style.domain.Style;
 import com.company.groomingzone.style.domain.StyleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Component
 public class StyleFinder {

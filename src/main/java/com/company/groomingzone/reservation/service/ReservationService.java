@@ -10,8 +10,11 @@ import com.company.groomingzone.style.service.StyleFinder;
 import com.company.groomingzone.reservation.domain.Reservation;
 import com.company.groomingzone.reservation.domain.ReservationTarget;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class ReservationService {
@@ -21,6 +24,7 @@ public class ReservationService {
     private final StyleFinder styleFinder;
     private final ReservationWriter reservationWriter;
 
+    @Transactional
     public Long reserve(Long customerId, ReservationTarget reservationTarget) {
         BarberShop barberShop = barberShopFinder.findById(reservationTarget.barberShopId());
         Style style = styleFinder.findById(reservationTarget.styleId());
