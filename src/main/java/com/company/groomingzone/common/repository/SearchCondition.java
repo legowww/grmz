@@ -10,4 +10,8 @@ public class SearchCondition {
     private int offset;
     private int limit;
     private SingleSortCondition sortCondition;
+
+    public int getScrollLimit() {
+        return limit + 1;
+    }
 }

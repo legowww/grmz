@@ -1,4 +1,4 @@
-package com.company.groomingzone.barbershop.dto.response;
+package com.company.groomingzone.barbershop.controller.response;
 
 
 import com.company.groomingzone.barbershop.domain.BarberShop;

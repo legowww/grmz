@@ -1,10 +1,10 @@
 package com.company.groomingzone.barbershop.repository.impl;
 
 import com.company.groomingzone.barbershop.domain.BarberShopSearchCondition;
-import com.company.groomingzone.barbershop.dto.response.BarberShopListResponse;
+import com.company.groomingzone.barbershop.domain.BarberShopInfo;
 import com.company.groomingzone.barbershop.repository.BarberShopEntityCustomRepository;
+import com.company.groomingzone.common.repository.ListQueryResponse;
 import com.company.groomingzone.common.repository.SingleSortCondition;
-import com.company.groomingzone.common.repository.querydsl.SliceUtility;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
@@ -12,9 +12,6 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -31,30 +28,26 @@ public class BarberShopEntityCustomRepositoryImpl implements BarberShopEntityCus
 
 
     @Override
-    public SliceImpl<BarberShopListResponse> findBarberShopList(BarberShopSearchCondition condition) {
-        Pageable pageable = PageRequest.of(condition.getOffset(), condition.getLimit());
-
-        List<BarberShopListResponse> content = jpaQueryFactory
-                .select(Projections.constructor(BarberShopListResponse.class,
+    public ListQueryResponse<BarberShopInfo> findBarberShopList(BarberShopSearchCondition condition) {
+        List<BarberShopInfo> content = jpaQueryFactory
+                .select(Projections.constructor(BarberShopInfo.class,
                         barberShopEntity.id,
                         barberShopEntity.name,
-                        barberShopEntity.name // TODO: 목록 조회에 응답 데이터 미정
+                        barberShopEntity.name
                 ))
                 .from(barberShopEntity)
-                // TODO: 리뷰, 이미지 테이블 조인?
                 .where(
                         barberShopEntity.isActive.eq(true),
                         nameContains(condition.getKeyword()),
                         inDistance(condition.getLatitude(), condition.getLongitude(), condition.getDistance())
                 )
-                .offset(pageable.getPageNumber())
-                .limit(pageable.getPageSize())
+                .offset(condition.getOffset())
+                .limit(condition.getScrollLimit())
                 .orderBy(getOrder(condition.getSortCondition()))
                 .fetch();
 
-        return SliceUtility.execute(pageable, content);
+        return ListQueryResponse.createScrollResponse(content, condition);
     }
-
 
     private OrderSpecifier<?> getOrder(SingleSortCondition sortCondition) {
         if (sortCondition == null ||sortCondition.sortBy() == null || sortCondition.direction() == null) {
@@ -64,7 +57,6 @@ public class BarberShopEntityCustomRepositoryImpl implements BarberShopEntityCus
         // TODO: 정렬 조건 추가 예정
         return new OrderSpecifier<>(Order.DESC, barberShopEntity.createdTs);
     }
-
 
     private BooleanExpression nameContains(String keyword) {
         return hasText(keyword) ? barberShopEntity.name.containsIgnoreCase(keyword) : null;

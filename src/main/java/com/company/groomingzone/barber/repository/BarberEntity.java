@@ -9,19 +9,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
 @Table(name = "barbers")
+@Entity
 public class BarberEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "member_id", nullable = false)
-    private Long memberId;
 
     @Column(name = "barber_shop_id", nullable = false)
     private Long barberShopId;
@@ -33,9 +32,8 @@ public class BarberEntity extends BaseEntity {
     private Boolean isActive = true;
 
     @Builder
-    private BarberEntity(Long id, Long memberId, Long barberShopId, String introduction, Boolean isActive) {
+    private BarberEntity(Long id, Long barberShopId, String introduction, Boolean isActive) {
         this.id = id;
-        this.memberId = memberId;
         this.barberShopId = barberShopId;
         this.introduction = introduction;
         this.isActive = isActive;

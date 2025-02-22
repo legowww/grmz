@@ -1,10 +1,10 @@
 package com.company.groomingzone.barbershop.repository;
 
 import com.company.groomingzone.barbershop.domain.BarberShopSearchCondition;
-import com.company.groomingzone.barbershop.dto.response.BarberShopListResponse;
-import org.springframework.data.domain.SliceImpl;
+import com.company.groomingzone.barbershop.domain.BarberShopInfo;
+import com.company.groomingzone.common.repository.ListQueryResponse;
 
 public interface BarberShopEntityCustomRepository {
 
-    SliceImpl<BarberShopListResponse> findBarberShopList(BarberShopSearchCondition condition);
+    ListQueryResponse<BarberShopInfo> findBarberShopList(BarberShopSearchCondition condition);
 }

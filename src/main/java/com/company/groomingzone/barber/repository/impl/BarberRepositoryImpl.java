@@ -3,7 +3,8 @@ package com.company.groomingzone.barber.repository.impl;
 import com.company.groomingzone.barber.domain.Barber;
 import com.company.groomingzone.barber.repository.BarberEntity;
 import com.company.groomingzone.barber.repository.BarberEntityJpaRepository;
-import com.company.groomingzone.barber.repository.BarberRepository;
+import com.company.groomingzone.barber.repository.BarberMapper;
+import com.company.groomingzone.barber.service.BarberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 public class BarberRepositoryImpl implements BarberRepository {
 
     private final BarberEntityJpaRepository jpaRepository;
+    private final BarberQueryRepositoryImpl barberQueryRepositoryImpl;
     private final BarberMapper mapper;
 
     @Override

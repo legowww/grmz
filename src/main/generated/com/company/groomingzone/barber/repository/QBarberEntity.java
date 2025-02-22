@@ -32,8 +32,6 @@ public class QBarberEntity extends EntityPathBase<BarberEntity> {
 
     public final BooleanPath isActive = createBoolean("isActive");
 
-    public final NumberPath<Long> memberId = createNumber("memberId", Long.class);
-
     //inherited
     public final DateTimePath<java.time.OffsetDateTime> updatedTs = _super.updatedTs;
 

@@ -1,6 +1,6 @@
 package com.company.groomingzone.barbershop.repository.impl;
 
-import com.company.groomingzone.barber.repository.BarberRepository;
+import com.company.groomingzone.barber.service.BarberRepository;
 import com.company.groomingzone.barbershop.domain.BarberShop;
 import com.company.groomingzone.barbershop.repository.BarberShopEntity;
 import com.company.groomingzone.barbershop.repository.BarberShopEntityCustomRepository;
