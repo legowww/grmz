@@ -1,7 +1,7 @@
 package com.company.groomingzone.barbershop.repository.impl;
 
 import com.company.groomingzone.barbershop.domain.BarberShopSearchCondition;
-import com.company.groomingzone.barbershop.domain.BarberShopInfo;
+import com.company.groomingzone.barbershop.service.dto.BarberShopInfoDto;
 import com.company.groomingzone.barbershop.repository.BarberShopEntityCustomRepository;
 import com.company.groomingzone.common.repository.ListQueryResponse;
 import com.company.groomingzone.common.repository.SingleSortCondition;
@@ -28,9 +28,9 @@ public class BarberShopEntityCustomRepositoryImpl implements BarberShopEntityCus
 
 
     @Override
-    public ListQueryResponse<BarberShopInfo> findBarberShopList(BarberShopSearchCondition condition) {
-        List<BarberShopInfo> content = jpaQueryFactory
-                .select(Projections.constructor(BarberShopInfo.class,
+    public ListQueryResponse<BarberShopInfoDto> findBarberShopList(BarberShopSearchCondition condition) {
+        List<BarberShopInfoDto> content = jpaQueryFactory
+                .select(Projections.constructor(BarberShopInfoDto.class,
                         barberShopEntity.id,
                         barberShopEntity.name,
                         barberShopEntity.name

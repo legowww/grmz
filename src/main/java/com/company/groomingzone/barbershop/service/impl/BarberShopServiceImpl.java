@@ -3,7 +3,7 @@ package com.company.groomingzone.barbershop.service.impl;
 import com.company.groomingzone.barber.domain.Barber;
 import com.company.groomingzone.barber.service.BarberService;
 import com.company.groomingzone.barbershop.domain.*;
-import com.company.groomingzone.barbershop.domain.BarberShopInfo;
+import com.company.groomingzone.barbershop.service.dto.BarberShopInfoDto;
 import com.company.groomingzone.barbershop.repository.BarberShopEntityCustomRepository;
 import com.company.groomingzone.barbershop.repository.BarberShopRepository;
 import com.company.groomingzone.barbershop.service.BarberShopService;
@@ -43,7 +43,7 @@ public class BarberShopServiceImpl implements BarberShopService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ListQueryResponse<BarberShopInfo> readBarberShopList(BarberShopSearchCondition condition) {
+    public ListQueryResponse<BarberShopInfoDto> readBarberShopList(BarberShopSearchCondition condition) {
         return barberShopEntityCustomRepository.findBarberShopList(condition);
     }
 

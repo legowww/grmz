@@ -4,7 +4,7 @@ import com.company.groomingzone.barbershop.controller.request.PostBarberShopRequ
 import com.company.groomingzone.barbershop.controller.response.BarberShopListResponse;
 import com.company.groomingzone.barbershop.domain.BarberShopSearchCondition;
 import com.company.groomingzone.barbershop.controller.response.BarberShopDetailResponse;
-import com.company.groomingzone.barbershop.domain.BarberShopInfo;
+import com.company.groomingzone.barbershop.service.dto.BarberShopInfoDto;
 import com.company.groomingzone.barbershop.service.BarberShopService;
 import com.company.groomingzone.barbershop.service.dto.CreateBarberShopCommand;
 import com.company.groomingzone.common.ApiResponse;
@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -52,7 +51,7 @@ public class BarberShopController {
             @RequestParam(required = false, defaultValue = "0") int offset,
             @RequestParam(required = false, defaultValue = "20") int limit
     ) {
-        ListQueryResponse<BarberShopInfo> result = barberShopService.readBarberShopList(BarberShopSearchCondition.builder()
+        ListQueryResponse<BarberShopInfoDto> result = barberShopService.readBarberShopList(BarberShopSearchCondition.builder()
                 .keyword(keyword)
                 .latitude(latitude)
                 .longitude(longitude)

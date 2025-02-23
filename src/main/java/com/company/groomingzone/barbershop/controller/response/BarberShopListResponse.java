@@ -1,7 +1,7 @@
 package com.company.groomingzone.barbershop.controller.response;
 
 
-import com.company.groomingzone.barbershop.domain.BarberShopInfo;
+import com.company.groomingzone.barbershop.service.dto.BarberShopInfoDto;
 
 public record BarberShopListResponse(
         Long id,
@@ -9,11 +9,11 @@ public record BarberShopListResponse(
         String barberShopImageUrl
 ) {
 
-    public static BarberShopListResponse from(BarberShopInfo barberShopInfo) {
+    public static BarberShopListResponse from(BarberShopInfoDto barberShopInfoDto) {
         return new BarberShopListResponse(
-                barberShopInfo.id(),
-                barberShopInfo.name(),
-                barberShopInfo.barberShopImageUrl()
+                barberShopInfoDto.id(),
+                barberShopInfoDto.name(),
+                barberShopInfoDto.barberShopImageUrl()
         );
     }
 }
