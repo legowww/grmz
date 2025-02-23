@@ -1,5 +1,6 @@
 package com.company.groomingzone.barbershop.repository;
 
+import com.company.groomingzone.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "barber_shops")
 @Getter
-public class BarberShopEntity {
+public class BarberShopEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

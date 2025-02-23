@@ -19,7 +19,12 @@ public class QBarberShopEntity extends EntityPathBase<BarberShopEntity> {
 
     public static final QBarberShopEntity barberShopEntity = new QBarberShopEntity("barberShopEntity");
 
+    public final com.company.groomingzone.common.QBaseEntity _super = new com.company.groomingzone.common.QBaseEntity(this);
+
     public final StringPath address = createString("address");
+
+    //inherited
+    public final DateTimePath<java.time.OffsetDateTime> createdTs = _super.createdTs;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -36,6 +41,9 @@ public class QBarberShopEntity extends EntityPathBase<BarberShopEntity> {
     public final NumberPath<Long> ownerId = createNumber("ownerId", Long.class);
 
     public final StringPath phone = createString("phone");
+
+    //inherited
+    public final DateTimePath<java.time.OffsetDateTime> updatedTs = _super.updatedTs;
 
     public QBarberShopEntity(String variable) {
         super(BarberShopEntity.class, forVariable(variable));

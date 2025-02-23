@@ -1,17 +1,25 @@
 package com.company.groomingzone.barbershop.controller;
 
-import com.company.groomingzone.barbershop.controller.dto.PostBarberShopRequest;
+import com.company.groomingzone.barbershop.controller.request.PostBarberShopRequest;
+import com.company.groomingzone.barbershop.controller.response.BarberShopListResponse;
+import com.company.groomingzone.barbershop.domain.BarberShopSearchCondition;
+import com.company.groomingzone.barbershop.controller.response.BarberShopDetailResponse;
+import com.company.groomingzone.barbershop.service.dto.BarberShopInfoDto;
 import com.company.groomingzone.barbershop.service.BarberShopService;
 import com.company.groomingzone.barbershop.service.dto.CreateBarberShopCommand;
 import com.company.groomingzone.common.ApiResponse;
+import com.company.groomingzone.common.controller.dto.ListResponse;
+import com.company.groomingzone.common.controller.dto.ScrollResponse;
+import com.company.groomingzone.common.repository.SingleSortCondition;
+import com.company.groomingzone.common.repository.ListQueryResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/barber-shop")
+@RequestMapping("/barber-shops")
 public class BarberShopController {
 
     private final BarberShopService barberShopService;
@@ -29,5 +37,47 @@ public class BarberShopController {
                 request.latitude(),
                 request.longitude());
         return ApiResponse.success(barberShopService.createBarberShop(command, requestMemberId));
+    }
+
+
+    @GetMapping
+    public ApiResponse<ListResponse<BarberShopListResponse>> readBarberShopList(
+            @RequestParam(required = false) String keyword,            // 매장명
+            @RequestParam(required = false) BigDecimal latitude,       // 현재 위치 위도
+            @RequestParam(required = false) BigDecimal longitude,      // 현재 위치 경도
+            @RequestParam(required = false) Double distance,           // 검색 반경(km)
+            @RequestParam(required = false, defaultValue = "created_ts") String sortBy,
+            @RequestParam(required = false, defaultValue = "desc") String direction,
+            @RequestParam(required = false, defaultValue = "0") int offset,
+            @RequestParam(required = false, defaultValue = "20") int limit
+    ) {
+        ListQueryResponse<BarberShopInfoDto> result = barberShopService.readBarberShopList(BarberShopSearchCondition.builder()
+                .keyword(keyword)
+                .latitude(latitude)
+                .longitude(longitude)
+                .distance(distance)
+                .offset(offset)
+                .limit(limit)
+                .sortCondition(new SingleSortCondition(sortBy, direction))
+                .build()
+        );
+
+        // controller 계층에 맞게 변환하는데, 작업 비용이 너무 많이드는데 꼭 필요한가 싶지만 그냥 함 ㅇㅇ 개선은 필요
+        ListResponse<BarberShopListResponse> response =
+                ListResponse.ofScroll(
+                        result.content().stream().map(BarberShopListResponse::from).toList(),
+                        new ScrollResponse(result.pageNumber(), result.pageSize(), result.hasNext())
+                );
+
+        return ApiResponse.success(response);
+    }
+
+
+    @GetMapping("/{id}")
+    public ApiResponse<BarberShopDetailResponse> readBarberShop(
+            @PathVariable Long id
+    ) {
+        // TODO: score, review count 추가 후 수정
+        return ApiResponse.success(BarberShopDetailResponse.of(barberShopService.readBarberShop(id), 0, 0));
     }
 }

@@ -1,4 +1,4 @@
-package com.company.groomingzone.barbershop.controller.dto;
+package com.company.groomingzone.barbershop.controller.request;
 
 import java.math.BigDecimal;
 

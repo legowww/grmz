@@ -4,8 +4,10 @@ import com.company.groomingzone.barbershop.domain.BarberShop;
 import com.company.groomingzone.barbershop.repository.BarberShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Component
 public class BarberShopFinder {

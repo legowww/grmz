@@ -1,6 +1,6 @@
 package com.company.groomingzone.barbershop.repository.impl;
 
-import com.company.groomingzone.barber.repository.BarberRepository;
+import com.company.groomingzone.barber.service.BarberRepository;
 import com.company.groomingzone.barbershop.domain.BarberShop;
 import com.company.groomingzone.barbershop.repository.BarberShopEntity;
 import com.company.groomingzone.barbershop.repository.BarberShopEntityCustomRepository;
@@ -23,7 +23,7 @@ public class BarberShopRepositoryImpl implements BarberShopRepository {
     @Override
     public BarberShop findById(Long id) {
         BarberShopEntity barberShopEntity = jpaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 스케줄입니다."));
+                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 바버샵입니다."));
 
         return barberShopMapper.mapToDomainEntity(barberShopEntity, barberRepository.findById(barberShopEntity.getOwnerId()));
     }

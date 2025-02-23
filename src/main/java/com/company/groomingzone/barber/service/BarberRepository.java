@@ -1,4 +1,4 @@
-package com.company.groomingzone.barber.repository;
+package com.company.groomingzone.barber.service;
 
 import com.company.groomingzone.barber.domain.Barber;
 
